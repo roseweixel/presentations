@@ -47,5 +47,6 @@ presentation 'ajax_intro' do
   end
 
   slide "DEMO TIME!" do
+    # use code/spotify-api-demo.html
   end
 end
