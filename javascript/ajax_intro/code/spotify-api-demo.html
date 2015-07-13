@@ -20,18 +20,31 @@
 
 <script>
 function getFirstArtistFromSpotify() {
+    alert("hello from getFirstArtistFromSpotify!")
+
     var artist = $('input[name=artist_name]').val();
     var url = "https://api.spotify.com/v1/search?q=" + artist + "&type=artist";
-    
-    $.ajax(url, {
+    var resultString;
+
+    $.ajax({
+        url: url,
         method: "GET",
         success: function(data){
-          $("#results").append("<p>" + data.artists.items[0].name + " is here!</p>")
+          alert("hello from the success function!")
+          if (data.artists.items.length === 0) {
+            resultString = "<p>Sorry, no artist named " + artist + " was found.</p>"
+          }
+          else {
+            resultString = "<p>" + data.artists.items[0].name + " is here!</p>"
+          }
+
+          $("#results").append(resultString)
         }
     });
 }
 
 $('input[type=submit]').on('click', function(){
+  alert("hello from the click event!")
   getFirstArtistFromSpotify()
 })
 </script>
